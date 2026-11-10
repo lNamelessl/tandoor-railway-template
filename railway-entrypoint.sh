@@ -24,3 +24,5 @@ fi
 # Hand off to upstream boot.sh: waits for Postgres, runs migrations,
 # collectstatic, then starts gunicorn behind the bundled nginx.
 exec /opt/recipes/boot.sh
+
+# Deploy targetPort is pinned to 8080 on the service domain (active-on-start; no platform healthcheck).
