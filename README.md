@@ -46,6 +46,6 @@ Tandoor does not support database downgrades. Before upgrading, back up the Post
 
 - `Dockerfile` — digest-pinned official image + Railway defaults (no upstream files modified)
 - `railway-entrypoint.sh` — derives `TANDOOR_PORT` (from Railway's injected `PORT`), `ALLOWED_HOSTS`/`CSRF_TRUSTED_ORIGINS` (from `RAILWAY_PUBLIC_DOMAIN` + `healthcheck.railway.app`), then execs upstream `boot.sh`
-- `railway.json` — healthcheck `/accounts/login/` (200 anonymous, no dots), restart policy
+- `railway.json` — Dockerfile builder + restart policy (no platform healthcheck: every Tandoor route that answers 200 to anonymous visitors pre-wizard redirects to `/setup/` until the first user exists, and Railway rejects dotted paths — the deploy goes active on container start instead; the entrypoint's `ALLOWED_HOSTS` handling still covers the `healthcheck.railway.app` probe host for anyone who re-enables a healthcheck)
 
 License: AGPL-3.0 (Tandoor Recipes). This template is community-made and unaffiliated with the Tandoor project.

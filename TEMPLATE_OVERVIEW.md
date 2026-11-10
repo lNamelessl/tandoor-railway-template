@@ -23,7 +23,7 @@ Hosting Tandoor yourself means your recipes, photos, meal plans, and shopping li
 - **Digest-pinned upstream**: the image is pinned to the exact v2.7.2 digest, so a deploy today and a deploy next year build the same working version — no surprise upstream breakage mid-cooking.
 - **Setup-wizard bootstrap**: no CLI, no shell, no management commands to run — the first page you see creates your admin account.
 - **Persistent by design**: your recipe photos live on a dedicated volume and the database on its own volume, so redeploys keep everything.
-- **Healthcheck-probe-safe**: the wrapper pre-authorizes Railway's internal probe host so the app never rejects Railway's own requests (upstream issue #3478).
+- **Railway-networking-safe**: the wrapper listens on Railway's assigned port and pre-authorizes your domain plus Railway's internal probe host in ALLOWED_HOSTS (upstream issue #3478), so the app never rejects Railway's own requests.
 
 ## Common Use Cases
 
