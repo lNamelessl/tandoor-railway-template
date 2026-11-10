@@ -21,3 +21,5 @@ ENV DB_ENGINE=django.db.backends.postgresql \
 
 # Keep tini as PID 1 exactly like upstream; only the entrypoint changes.
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/railway-entrypoint.sh"]
+
+# Healthcheck: /accounts/login/ (dotless, 200 anonymous). Probe host is allow-listed by the entrypoint.
